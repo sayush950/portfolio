@@ -2,24 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* globals.css */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #eee7e72f;
+  --foreground: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
+.dark {
+  --background: #1c1e20; /* Tailwind gray-900 */
+  --foreground: #ffffff;
 }
 
 body {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

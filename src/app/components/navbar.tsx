@@ -1,24 +1,38 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";  // Icon components (install @heroicons/react)
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
-  // State for mobile menu open/closed
   const [menuOpen, setMenuOpen] = useState(false);
-  // State for dark mode (false = light, true = dark)
   const [darkMode, setDarkMode] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
 
-  // Toggle dark mode: add/remove 'dark' class on html element
   useEffect(() => {
-    if (darkMode) {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
       document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+      setDarkMode(true);
     }
-  }, [darkMode]);
 
-  // Define navigation links
+    const updateHash = () => setActiveHash(window.location.hash);
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
+
+  const toggleTheme = () => {
+    if (darkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setDarkMode(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setDarkMode(true);
+    }
+  };
+
   const navLinks = [
     { name: "About Me", href: "/#about" },
     { name: "Education", href: "/#education" },
@@ -26,100 +40,110 @@ const Navbar = () => {
     { name: "Experience", href: "/#experience" },
     { name: "Projects", href: "/#projects" },
     { name: "Achievement", href: "/#achievement" },
-    { name: "Coding Profiles", href: "/#coding-profiles" },
     { name: "Contact", href: "/#contact" },
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow fixed w-full top-0 z-50">
+    <nav className="bg-background text-foreground shadow fixed w-full top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main navbar container */}
         <div className="flex justify-between items-center h-16">
-          {/* Left: Profile icon/logo */}
-          <div className="flex items-center space-x-2">
-            <img 
-              src="/profile.jpg" 
-              alt="Profile" 
-              className="h-10 w-10 rounded-full object-cover" 
+          <div className="flex items-center space-x-3">
+            <img
+              src="/profile.jpg"
+              alt="Profile"
+              className="absolute top-3 left-6 h-10 w-10 rounded-full border-2 border-cyan-400 shadow-md"
             />
-            {/* You can include a text logo or name here if desired */}
           </div>
 
-          {/* Center: Nav links (hidden on mobile) */}
-          <ul className="hidden md:flex md:items-center md:space-x-6">
+          <ul className="hidden md:flex md:items-center md:space-x-10 ml-auto">
             {navLinks.map(link => {
-              // Determine if link is currently active (for persistent underline)
-              // If using Next.js routing, you can use useRouter() to get the current path.
-              const isActive = typeof window !== "undefined" && window.location.hash === link.href.replace('/#', '#');
+              const isActive = activeHash === link.href.replace("/#", "#");
               return (
-                <li key={link.name}>
-                    <Link
+                <li
+                  key={link.name}
+                  className="transition-transform duration-300 ease-in-out hover:scale-110"
+                >
+                  <Link
                     href={link.href}
                     scroll={false}
-                    className={`relative px-3 py-2 font-medium text-gray-700 dark:text-gray-300 
-                        after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
-                        after:bg-current after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
-                        hover:after:scale-x-100`}
-                    >
+                    className={`relative px-3 py-2 text-lg font-semibold transition 
+                      transform duration-300 ease-in-out
+                      hover:scale-110 hover:text-cyan-400 
+                      hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] 
+                      after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
+                      after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
+                      hover:after:scale-x-100
+                      ${isActive ? "after:scale-x-100 text-cyan-400 bg-cyan-900/30 rounded-md" : "text-foreground"}`}
+                  >
                     {link.name}
-                    </Link>
+                  </Link>
                 </li>
               );
             })}
           </ul>
 
-          {/* Right: Dark mode toggle & Mobile menu button */}
-          <div className="flex items-center space-x-2">
-            {/* Dark Mode Toggle Button */}
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
-              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {darkMode ? <SunIcon className="h-5 w-5 text-gray-800"/> : <MoonIcon className="h-5 w-5 text-gray-200"/>}
-            </button>
+          <div className="absolute right-20 top-4">
+  <button
+    onClick={toggleTheme}
+    className="p-2 rounded-full border-2 border-cyan-500 hover:border-cyan-300 transition duration-300 shadow-md hover:shadow-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+    aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+  >
+    {darkMode ? (
+      <SunIcon className="h-6 w-6 text-yellow-400" />
+    ) : (
+      <MoonIcon className="h-6 w-6 text-white" />
+    )}
+  </button>
 
-            {/* Mobile Menu Toggle (Hamburger) */}
-            <button 
+            <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded md:hidden focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+              className="p-2 rounded md:hidden focus:outline-none focus:ring-2 focus:ring-cyan-500"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-controls="mobile-menu"
               aria-expanded={menuOpen}
             >
               {menuOpen ? (
-                <XMarkIcon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                <XMarkIcon className="h-6 w-6 text-foreground" />
               ) : (
-                <Bars3Icon className="h-6 w-6 text-gray-800 dark:text-gray-200" />
+                <Bars3Icon className="h-6 w-6 text-foreground" />
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu (dropdown) */}
-      <div 
+      <div
         id="mobile-menu"
         className={`md:hidden origin-top transition-transform transform duration-300 ease-in-out 
-                   ${menuOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"} 
-                   bg-white dark:bg-gray-800`}
+          ${menuOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"} 
+          bg-background text-foreground`}
       >
         <ul className="flex flex-col px-4 pt-2 pb-4 space-y-1">
-          {navLinks.map(link => (
-  <li key={link.name}>
-    <Link
-      href={link.href}
-      scroll={false}
-      className={`relative px-3 py-2 font-medium text-gray-700 dark:text-gray-300 
-        after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
-        after:bg-current after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
-        hover:after:scale-x-100`}
-    >
-      {link.name}
-    </Link>
-  </li>
-))}
-
+          {navLinks.map(link => {
+            const isActive = activeHash === link.href.replace("/#", "#");
+            return (
+              <li
+                key={link.name}
+                className="transition-transform duration-300 ease-in-out hover:scale-105"
+              >
+                <Link
+                  href={link.href}
+                  scroll={false}
+                  onClick={() => setMenuOpen(false)}
+                  className={`relative px-3 py-2 text-lg font-semibold transition 
+                    transform duration-300 ease-in-out
+                    hover:scale-110 hover:text-cyan-400 
+                    hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] 
+                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
+                    after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
+                    hover:after:scale-x-100
+                    ${isActive ? "after:scale-x-100 text-cyan-400 bg-cyan-900/30 rounded-md" : "text-foreground"}`}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </nav>
