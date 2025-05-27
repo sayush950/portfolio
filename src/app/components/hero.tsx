@@ -79,7 +79,7 @@ const Hero = () => {
       </div>
 
       {/* Left Side Content */}
-      <div className="z-10 text-left md:w-1/2">
+      <div className="z-10 ml-80">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8">
           Hi, <span id="typed-text" className="text-cyan-500"></span>
         </h1>

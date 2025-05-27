@@ -1,12 +1,12 @@
+// src/components/navbar.tsx
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -14,11 +14,6 @@ const Navbar = () => {
       document.documentElement.classList.add("dark");
       setDarkMode(true);
     }
-
-    const updateHash = () => setActiveHash(window.location.hash);
-    updateHash();
-    window.addEventListener("hashchange", updateHash);
-    return () => window.removeEventListener("hashchange", updateHash);
   }, []);
 
   const toggleTheme = () => {
@@ -34,66 +29,56 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "About Me", href: "/#about" },
-    { name: "Education", href: "/#education" },
-    { name: "Skills", href: "/#skills" },
-    { name: "Experience", href: "/#experience" },
-    { name: "Projects", href: "/#projects" },
-    { name: "Achievement", href: "/#achievement" },
-    { name: "Contact", href: "/#contact" },
+    { name: "About Me", to: "about" },
+    { name: "Education", to: "education" },
+    { name: "Skills", to: "skills" },
+    { name: "Experience", to: "experience" },
+    { name: "Projects", to: "projects" },
+    { name: "Achievement", to: "achievement" },
+    { name: "Contact", to: "contact" },
   ];
 
   return (
     <nav className="bg-background text-foreground shadow fixed w-full top-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-3">
-            <img
-              src="/profile.jpg"
-              alt="Profile"
-              className="absolute top-3 left-6 h-10 w-10 rounded-full border-2 border-cyan-400 shadow-md"
-            />
-          </div>
+          <img
+            src="/profile.jpg"
+            alt="Profile"
+            className="absolute top-3 left-6 h-10 w-10 rounded-full border-2 border-cyan-400 shadow-md"
+          />
 
           <ul className="hidden md:flex md:items-center md:space-x-10 ml-auto">
-            {navLinks.map(link => {
-              const isActive = activeHash === link.href.replace("/#", "#");
-              return (
-                <li
-                  key={link.name}
-                  className="transition-transform duration-300 ease-in-out hover:scale-110"
+            {navLinks.map(link => (
+              <li
+                key={link.name}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
+              >
+                <ScrollLink
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  offset={-64}
+                  className="cursor-pointer relative px-3 py-2 text-lg font-semibold text-foreground transition transform duration-300 ease-in-out hover:scale-110 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
-                  <Link
-                    href={link.href}
-                    scroll={false}
-                    className={`relative px-3 py-2 text-lg font-semibold transition 
-                      transform duration-300 ease-in-out
-                      hover:scale-110 hover:text-cyan-400 
-                      hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] 
-                      after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
-                      after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
-                      hover:after:scale-x-100
-                      ${isActive ? "after:scale-x-100 text-cyan-400 bg-cyan-900/30 rounded-md" : "text-foreground"}`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              );
-            })}
+                  {link.name}
+                </ScrollLink>
+              </li>
+            ))}
           </ul>
 
-          <div className="absolute right-20 top-4">
-  <button
-    onClick={toggleTheme}
-    className="p-2 rounded-full border-2 border-cyan-500 hover:border-cyan-300 transition duration-300 shadow-md hover:shadow-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-    aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-  >
-    {darkMode ? (
-      <SunIcon className="h-6 w-6 text-yellow-400" />
-    ) : (
-      <MoonIcon className="h-6 w-6 text-white" />
-    )}
-  </button>
+          <div className="absolute right-20 top-4 flex space-x-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full border-2 border-cyan-500 hover:border-cyan-300 transition duration-300 shadow-md hover:shadow-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? (
+                <SunIcon className="h-6 w-6 text-yellow-400" />
+              ) : (
+                <MoonIcon className="h-6 w-6 text-white" />
+              )}
+            </button>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -112,6 +97,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div
         id="mobile-menu"
         className={`md:hidden origin-top transition-transform transform duration-300 ease-in-out 
@@ -119,31 +105,23 @@ const Navbar = () => {
           bg-background text-foreground`}
       >
         <ul className="flex flex-col px-4 pt-2 pb-4 space-y-1">
-          {navLinks.map(link => {
-            const isActive = activeHash === link.href.replace("/#", "#");
-            return (
-              <li
-                key={link.name}
-                className="transition-transform duration-300 ease-in-out hover:scale-105"
+          {navLinks.map(link => (
+            <li
+              key={link.name}
+              className="transition-transform duration-300 ease-in-out hover:scale-105"
+            >
+              <ScrollLink
+                to={link.to}
+                smooth={true}
+                duration={500}
+                offset={-64}
+                onClick={() => setMenuOpen(false)}
+                className="cursor-pointer relative px-3 py-2 text-lg font-semibold transition transform duration-300 ease-in-out hover:scale-110 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
               >
-                <Link
-                  href={link.href}
-                  scroll={false}
-                  onClick={() => setMenuOpen(false)}
-                  className={`relative px-3 py-2 text-lg font-semibold transition 
-                    transform duration-300 ease-in-out
-                    hover:scale-110 hover:text-cyan-400 
-                    hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] 
-                    after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 
-                    after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 
-                    hover:after:scale-x-100
-                    ${isActive ? "after:scale-x-100 text-cyan-400 bg-cyan-900/30 rounded-md" : "text-foreground"}`}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            );
-          })}
+                {link.name}
+              </ScrollLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
