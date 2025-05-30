@@ -88,16 +88,16 @@ const Hero = () => {
         </p>
         <div className="flex space-x-4">
           <a
-            href="#projects"
-            className="px-6 py-3 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white transition"
-          >
-            View Projects
-          </a>
-          <a
             href="/resume.pdf"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
           >
             Download Resume
+          </a>
+          <a
+            href="mailto:sayush950@gmail.com"
+            className="px-6 py-3 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white transition"
+          >
+            Mail Me
           </a>
         </div>
       </div>

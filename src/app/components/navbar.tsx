@@ -31,8 +31,8 @@ const Navbar = () => {
   const navLinks = [
     { name: "About Me", to: "about" },
     { name: "Education", to: "education" },
-    { name: "Skills", to: "skills" },
     { name: "Experience", to: "experience" },
+    { name: "Skills", to: "skills" },
     { name: "Projects", to: "projects" },
     { name: "Achievement", to: "achievement" },
     { name: "Contact", to: "contact" },
@@ -57,7 +57,7 @@ const Navbar = () => {
                 <ScrollLink
                   to={link.to}
                   smooth={true}
-                  duration={500}
+                  duration={100}
                   offset={-64}
                   className="cursor-pointer relative px-3 py-2 text-lg font-semibold text-foreground transition transform duration-300 ease-in-out hover:scale-110 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
                 >
@@ -76,7 +76,7 @@ const Navbar = () => {
               {darkMode ? (
                 <SunIcon className="h-6 w-6 text-yellow-400" />
               ) : (
-                <MoonIcon className="h-6 w-6 text-white" />
+                <MoonIcon className="h-6 w-6 text-black-400" />
               )}
             </button>
 
@@ -113,7 +113,7 @@ const Navbar = () => {
               <ScrollLink
                 to={link.to}
                 smooth={true}
-                duration={500}
+                duration={100}
                 offset={-64}
                 onClick={() => setMenuOpen(false)}
                 className="cursor-pointer relative px-3 py-2 text-lg font-semibold transition transform duration-300 ease-in-out hover:scale-110 hover:text-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-cyan-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100"
