@@ -34,7 +34,7 @@ const About = () => {
       <div className="md:w-1/2 flex justify-center">
         <div className="w-[500px] h-[500px] mb-60 rounded-full overflow-hidden border-4 transition-transform duration-500 hover:scale-105">
           <Image
-            src="/images/sample.jpg" // Place your image in public/profile.png
+            src="/images/profile.jpg" // Place your image in public/profile.png
             alt="Ayush Singh"
             width={700}
             height={700}

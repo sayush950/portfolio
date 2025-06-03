@@ -29,7 +29,7 @@ const educationData = [
 
 const Education = () => {
   return (
-    <section id="education" className="min-h-screen py-2 px-4 md:px-2 bg-background text-foreground">
+    <section id="education" className="min-h-screen py-[150px] px-4 md:px-2 bg-background text-foreground">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center space-x-3 mb-10 justify-center">

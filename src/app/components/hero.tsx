@@ -13,7 +13,7 @@ const techIcons = [
 const Hero = () => {
   useEffect(() => {
     const typed = new Typed("#typed-text", {
-      strings: ["I'm Ayush Singh", "a Full Stack Developer", "a Problem Solver"],
+      strings: ["I'm Ayush Singh", "a Computer Science Graduate", "a Full Stack Developer", "a Problem Solver"],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 2000,
