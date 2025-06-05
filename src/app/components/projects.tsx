@@ -243,7 +243,7 @@ const Project = () => {
                 target="_blank"
                 className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 transition text-white font-semibold"
               >
-                Demo ↗
+                Demo Video↗
               </a>
             </div>
           </div>
