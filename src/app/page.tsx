@@ -4,6 +4,7 @@ import About from "./components/about";
 import Education from "./components/education";
 import BackgroundCanvas from "./components/BackgroundCanvas";
 import Experience from "./components/experience";
+import Project from "./components/projects";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Education />
       <Experience />
       <Skills />
+      <Project />
     </main>
   );
 }

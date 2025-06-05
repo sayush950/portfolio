@@ -88,10 +88,10 @@ const Hero = () => {
         </p>
         <div className="flex space-x-4">
           <a
-            href="/resume.pdf"
+            href="https://drive.google.com/file/d/1bJUus7ntQ3QFXfqg2MObJ6OGf2hb0xs3/view?usp=sharing" target="_blank"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
           >
-            Download Resume
+            Resume
           </a>
           <a
             href="mailto:sayush950@gmail.com"

@@ -1,7 +1,10 @@
 "use client";
-import { BriefcaseIcon } from "@heroicons/react/24/solid";
+import { BriefcaseIcon, AcademicCapIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { label } from "motion/react-client";
 import { useState } from "react";
+import React, { ReactNode } from "react";
+
 
 const experienceData = [
   {
@@ -12,7 +15,7 @@ const experienceData = [
     description: [
       "Streamline data pipelines to support tracking and lifecycle visibility for thousands of supplier evaluations.",
       <>
-        Implement retailer-specific rules to automate RFID tag validation, working with major brands like <strong> Walmart, Nordstrom, Delta, Los Alamos National Laboratories & many more.</strong>
+        Implement retailer-specific rules to automate RFID tag validation, working with major brands like <strong> Walmart, Nordstrom & many more.</strong>
       </>,
       "Redesign scalable MySQL databases to handle complex submission workflows, including tagging metadata, approvals, and submission history.",
       "Modernized the supplier validation platform by developing secure, high-performance REST APIs with Express.js as part of the MERN stack, replacing legacy architecture to streamline supplier submissions."
@@ -153,45 +156,68 @@ const experienceData = [
   },
 ];
 
+const ExtraCurricularData = [
+  {
+    title: "Vice President of Special Projects",
+    org: "Indian Students Association at Auburn University, AL",
+    date: "Aug 2023 - Nov 2024",
+    icon: "🌍",
+    description: ["My roles & responsibilities are to help the incoming students to get them settled at Auburn University in an easeful manner and get acclimatized with Auburn."],
+    links: [{label: "ISA Auburn", url:"https://isa.auburn.edu/"}
+    ]
+  },
+  {
+    title: "Web Content Writer",
+    org: "Wikipedia",
+    date: "Jan 2023 - May 2023",
+    icon: "💼",
+    description: [],
+    links: [
+    ]
+  },
+  {
+    title: "State level Soccer, Table Tennis Player",
+    org: "KVIIT, Kanpur, India",
+    date: "Jan 2023 - May 2023",
+    icon: "🏆",
+    description: [],
+    links: [ {label: "KVIIT", url:"https://en.wikipedia.org/wiki/Kendriya_Vidyalaya_IIT_Kanpur"}
+    ]
+  },
+  
+];
+
 const Experience = () => {
   const [expanded, setExpanded] = useState<number | null>(null);
-  const [showCertificates, setShowCertificates] = useState(false);
 
   const toggleExpand = (idx: number) => {
     setExpanded(prev => (prev === idx ? null : idx));
   };
 
-  return (
-    <section id="experience" className="min-h-screen py-10 px-6 md:px-24 bg-background text-foreground">
+  const renderSection = (data: typeof experienceData, title: string, IconComponent: React.ReactNode, id?: string) => (
+    <section id={id || title.toLowerCase().replace(/ /g, "-")} className="min-h-screen py-10 px-6 md:px-24 bg-background text-foreground">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center space-x-3 mb-12 justify-center">
-          <BriefcaseIcon className="h-[90px] w-[90px] text-cyan-500" />
-          <h2 className="text-6xl font-bold">Experience</h2>
+          {IconComponent}
+          <h2 className="text-6xl font-bold">{title}</h2>
         </div>
 
         <div className="relative">
           <div className="space-y-16 pl-14">
-            {experienceData.map((exp, idx) => {
+            {data.map((exp, idx) => {
               const isExpanded = expanded === idx;
               const shortDesc = Array.isArray(exp.description) ? exp.description.slice(0, 2) : exp.description;
 
               return (
                 <motion.div
-                  key={idx}
+                  key={idx + title}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 40,
-                    damping: 18,
-                    mass: 0.6,
-                    delay: idx * 0.15,
-                  }}
+                  transition={{ type: "spring", stiffness: 40, damping: 18, mass: 0.6, delay: idx * 0.15 }}
                   className="relative bg-white dark:bg-zinc-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"
                 >
-                  {/* Glowing Dot */}
                   <span className="absolute left-[-2.25rem] top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full border-4 border-fuchsia-500 bg-pink-600 shadow-[0_0_20px_rgba(255,0,255,0.6)]"></span>
 
                   <div className="text-center">
@@ -205,20 +231,20 @@ const Experience = () => {
                     <div className="mt-4 text-gray-800 dark:text-gray-300 leading-relaxed text-left">
                       {Array.isArray(exp.description) ? (
                         <ul className="list-disc list-inside space-y-1">
-                        {(isExpanded ? exp.description : exp.description.slice(0, 2)).map((point, i, arr) => (
-                          <li key={i}>
-                            {point}
-                            {(!isExpanded && i === 1) || (isExpanded && i === arr.length - 1) ? (
-                              <button
-                                className="ml-2 text-cyan-600 dark:text-cyan-400 hover:underline inline"
-                                onClick={() => toggleExpand(idx)}
-                              >
-                                {isExpanded ? "See Less" : "See More"}
-                              </button>
-                            ) : null}
-                          </li>
-                        ))}
-                      </ul>
+                          {(isExpanded ? exp.description : shortDesc).map((point, i, arr) => (
+                            <li key={i}>
+                              {point}
+                              {(!isExpanded && i === 1) || (isExpanded && i === arr.length - 1) ? (
+                                <button
+                                  className="ml-2 text-cyan-600 dark:text-cyan-400 hover:underline inline"
+                                  onClick={() => toggleExpand(idx)}
+                                >
+                                  {isExpanded ? "See Less" : "See More"}
+                                </button>
+                              ) : null}
+                            </li>
+                          ))}
+                        </ul>
                       ) : (
                         <p>{isExpanded ? exp.description : shortDesc}</p>
                       )}
@@ -247,6 +273,14 @@ const Experience = () => {
         </div>
       </div>
     </section>
+  );
+
+  return (
+    <>
+      {renderSection(experienceData, "Experience", <BriefcaseIcon className="h-[90px] w-[90px] text-cyan-500" />, "experience")}
+      <hr className="my-12 border-t border-gray-400 dark:border-gray-600 w-4/5 mx-auto" />
+      {renderSection(ExtraCurricularData, "Extra Curricular Activities", <AcademicCapIcon className="h-[90px] w-[90px] text-fuchsia-500" />, "extra-curricular")}
+    </>
   );
 };
 
