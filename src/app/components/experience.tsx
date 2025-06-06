@@ -1,7 +1,6 @@
 "use client";
 import { BriefcaseIcon, AcademicCapIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import { label } from "motion/react-client";
 import { useState } from "react";
 import React, { ReactNode } from "react";
 
