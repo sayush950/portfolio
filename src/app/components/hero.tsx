@@ -88,7 +88,7 @@ const Hero = () => {
         </p>
         <div className="flex space-x-4">
           <a
-            href="https://drive.google.com/file/d/1bJUus7ntQ3QFXfqg2MObJ6OGf2hb0xs3/view?usp=sharing" target="_blank"
+            href="https://drive.google.com/file/d/1RvlJ2haOGqRTedWSrn8dSoorFNtvdSxY/view?usp=drive_link" target="_blank"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
           >
             Resume
