@@ -1,4 +1,3 @@
-// src/components/navbar.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
@@ -42,9 +41,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <img
-            src="/profile.jpg"
+            src="/images/navbar.jpg"
             alt="Profile"
-            className="absolute top-3 left-6 h-10 w-10 rounded-full border-2 border-cyan-400 shadow-md"
+            className="absolute top-[10px] left-6 h-[50px] w-[50px] rounded-full border-2 border-cyan-400 shadow-md"
           />
 
           <ul className="hidden md:flex md:items-center md:space-x-10 ml-auto">
@@ -81,7 +80,7 @@ const Navbar = () => {
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded md:hidden focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              className="p-2 rounded md:hidden focus:outline-none focus:ring-2 focus:ring-cyan-500 mr-[20px]"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-controls="mobile-menu"
               aria-expanded={menuOpen}

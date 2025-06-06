@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaArrowUp, FaLinkedin, FaGithub, FaMailBulk, FaUserCircle } from 'react-icons/fa';
+import { FaUser, FaLinkedin, FaGithub, FaMailBulk } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 
 export default function Contact() {
@@ -47,7 +47,6 @@ export default function Contact() {
     }
   };
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
     <div id="contact" className="min-h-[80vh] flex flex-col justify-between">
@@ -81,9 +80,9 @@ export default function Contact() {
         <div className="text-center">
           <p className="font-semibold text-[15px] underline-offset-2 mb-2 mr-20">You can find me here ✌️</p>
           <div className="flex gap-4 justify-center mr-20">
-            <a href="https://www.linkedin.com/in/ayush-singh-a70a07156/" target="_blank" rel="noreferrer" className="text-white text-xl border border-white rounded-full p-2"><FaLinkedin /></a>
-            <a href="https://github.com/sayush950" target="_blank" rel="noreferrer" className="text-pink-500 text-xl border border-white rounded-full p-2"><FaGithub /></a>
-            <a href="mailto:sayush950@gmail.com" className="text-white text-xl border border-white rounded-full p-2"><FaMailBulk /></a>
+            <a href="https://www.linkedin.com/in/ayush-singh-a70a07156/" target="_blank" rel="noreferrer" className=" text-xl rounded-full p-2 dark:bg-zinc-900 text-gray-800 dark:text-gray-200 shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"><FaLinkedin /></a>
+            <a href="https://github.com/sayush950" target="_blank" rel="noreferrer" className="text-pink-500 text-xl shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition rounded-full p-2"><FaGithub /></a>
+            <a href="mailto:sayush950@gmail.com" className="text-xl rounded-full p-2 dark:bg-zinc-900 text-gray-800 dark:text-gray-200 shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"><FaMailBulk /></a>
           </div>
         </div>
       </div>
@@ -96,9 +95,7 @@ export default function Contact() {
   }}
 />
 
-      <button onClick={scrollToTop} className="fixed bottom-[30px] right-[60px] bg-white text-black p-3 rounded-full shadow-md hover:bg-gray-300">
-        <FaArrowUp />
-      </button>
+      
     </div>
   );
 }

@@ -1,4 +1,3 @@
-// src/components/about.tsx
 "use client";
 import Image from "next/image";
 
@@ -16,7 +15,7 @@ const About = () => {
           dedicated to building modern, responsive, and accessible web applications.
           <br /><br />
           I'm a recent graduate in Computer Science and Software Engineering from Auburn University with a strong
-          foundation in full-stack development and modern technologies including the MERN stack. I have hands-on
+          foundation in Full Stack and MERN stack development. I have hands-on
           experience building scalable applications and integrating backend services with dynamic frontend interfaces.
           <br /><br />
           I'm currently seeking full-time opportunities as a Software Engineer, Full-Stack Developer, or MERN Stack
@@ -34,7 +33,7 @@ const About = () => {
       <div className="md:w-1/2 flex justify-center">
         <div className="w-[500px] h-[500px] mb-60 rounded-full overflow-hidden border-4 transition-transform duration-500 hover:scale-105">
           <Image
-            src="/images/profile.jpg" // Place your image in public/profile.png
+            src="/images/profile.jpg"
             alt="Ayush Singh"
             width={700}
             height={700}

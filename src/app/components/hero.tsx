@@ -1,16 +1,12 @@
 "use client";
-import { useEffect } from "react";
-import Typed from "typed.js";
 
-const techIcons = [
-  { name: "HTML", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "CSS", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-  { name: "JavaScript", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "React", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Node.js", url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-];
+import { useEffect, useState } from "react";
+import Typed from "typed.js";
+import { FaArrowUp } from "react-icons/fa";
 
 const Hero = () => {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
   useEffect(() => {
     const typed = new Typed("#typed-text", {
       strings: ["I'm Ayush Singh", "a Computer Science Graduate", "a Full Stack Developer", "a Problem Solver"],
@@ -20,7 +16,7 @@ const Hero = () => {
       loop: true,
     });
 
-    const canvas = document.getElementById("stars-canvas") as HTMLCanvasElement;
+    const canvas = document.getElementById("stars-canvas") as HTMLCanvasElement | null;
     const ctx = canvas?.getContext("2d");
     let stars: { x: number; y: number; radius: number; dx: number; dy: number; alpha: number }[] = [];
 
@@ -68,27 +64,43 @@ const Hero = () => {
       animate();
     }
 
-    return () => typed.destroy();
+    const handleScroll = () => {
+      setShowScrollButton(window.scrollY > window.innerHeight * 0.5);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      typed.destroy();
+      window.removeEventListener("resize", () => {});
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row justify-center md:justify-between items-center px-6 md:px-16 bg-background text-foreground overflow-hidden">
+    <section className="relative min-h-screen flex flex-col md:flex-row justify-center md:justify-between items-center px-6 sm:px-10 md:px-16 bg-background text-foreground overflow-hidden">
       {/* Star Background */}
       <div className="absolute inset-0 z-0">
         <canvas id="stars-canvas" className="w-full h-full"></canvas>
       </div>
 
-      {/* Left Side Content */}
-      <div className="z-10 ml-80">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8">
+      {/* Main hero Content */}
+      <div className="z-10 max-w-5xl ml-60 text-center md:text-left mt-20 md:mt-0">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
           Hi, <span id="typed-text" className="text-cyan-500"></span>
         </h1>
         <p className="text-lg sm:text-xl max-w-2xl mb-8">
           I build elegant, fast, and scalable web applications using modern tech.
         </p>
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/1RvlJ2haOGqRTedWSrn8dSoorFNtvdSxY/view?usp=drive_link" target="_blank"
+            href="https://drive.google.com/file/d/1RvlJ2haOGqRTedWSrn8dSoorFNtvdSxY/view?usp=drive_link"
+            target="_blank"
+            rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
           >
             Resume
@@ -102,7 +114,15 @@ const Hero = () => {
         </div>
       </div>
 
-      
+      {/* Scroll to Top Button */}
+      {showScrollButton && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-white text-black p-3 rounded-full shadow-md hover:bg-gray-300 z-50"
+        >
+          <FaArrowUp />
+        </button>
+      )}
     </section>
   );
 };
