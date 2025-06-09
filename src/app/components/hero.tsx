@@ -98,7 +98,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/1Swq3dl2iPPeZEDGa32Z4qqDVX_S163-K/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1VP8_GPy8_Nfry2RBdTqME_XUPV4yQxAV/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
@@ -106,7 +106,7 @@ const Hero = () => {
             Resume
           </a>
           <a
-            href="mailto:sayush950@gmail.com"
+            href="mailto:azs0382@auburn.edu"
             className="px-6 py-3 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white transition"
           >
             Mail Me

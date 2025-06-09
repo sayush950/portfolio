@@ -26,7 +26,7 @@ export default function Contact() {
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'sayush950@gmail.com',
+          to_email: 'azs0382@auburn.edu',
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
@@ -82,7 +82,7 @@ export default function Contact() {
           <div className="flex gap-4 justify-end">
             <a href="https://www.linkedin.com/in/ayush-singh-a70a07156/" target="_blank" rel="noreferrer" className="text-xl rounded-full p-2 dark:bg-zinc-900 text-gray-800 dark:text-gray-200 shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"><FaLinkedin /></a>
             <a href="https://github.com/sayush950" target="_blank" rel="noreferrer" className="text-pink-500 text-xl shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition rounded-full p-2"><FaGithub /></a>
-            <a href="mailto:sayush950@gmail.com" className="text-xl rounded-full p-2 dark:bg-zinc-900 text-gray-800 dark:text-gray-200 shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"><FaMailBulk /></a>
+            <a href="mailto:azs0382@auburn.edu" className="text-xl rounded-full p-2 dark:bg-zinc-900 text-gray-800 dark:text-gray-200 shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"><FaMailBulk /></a>
           </div>
         </div>
       </div>

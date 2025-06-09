@@ -48,7 +48,7 @@ const About = () => {
           <br /><br />
           I'm always open to discussing exciting opportunities and collaborations. Feel free to connect or reach out to
           me at
-          <a href="mailto:sayush950@gmail.com" className="text-cyan-500 hover:text-cyan-400"> sayush950@gmail.com</a>
+          <a href="mailto:azs0382@auburn.edu" className="text-cyan-500 hover:text-cyan-400"> azs0382@auburn.edu</a>
         </p>
       </div>
 
