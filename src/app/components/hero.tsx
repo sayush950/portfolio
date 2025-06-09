@@ -89,7 +89,7 @@ const Hero = () => {
       </div>
 
       {/* Main hero Content */}
-      <div className="z-10 max-w-5xl ml-60 text-center md:text-left mt-20 md:mt-0">
+      <div className="z-10 max-w-5xl lg:ml-60 text-center md:text-left mt-24 md:mt-0 px-4 sm:px-6 md:px-0">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
           Hi, <span id="typed-text" className="text-cyan-500"></span>
         </h1>
@@ -98,7 +98,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/1RvlJ2haOGqRTedWSrn8dSoorFNtvdSxY/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1Swq3dl2iPPeZEDGa32Z4qqDVX_S163-K/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"

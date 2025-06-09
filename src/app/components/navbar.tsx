@@ -37,7 +37,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-background text-foreground shadow fixed w-full top-0 z-50 transition-colors duration-300">
+<nav className="bg-background text-foreground fixed w-full top-0 z-50 transition-colors duration-300 border-b border-transparent md:border-none h-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <img
@@ -65,7 +65,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="absolute right-20 top-4 flex space-x-2">
+          <div className="absolute right-4 top-4 flex space-x-2 md:right-20 md:top-4">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full border-2 border-cyan-500 hover:border-cyan-300 transition duration-300 shadow-md hover:shadow-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-500"

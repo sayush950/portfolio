@@ -1,9 +1,15 @@
-// src/components/BackgroundCanvas.tsx
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const BackgroundCanvas = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    const mobileCheck = window.matchMedia("(max-width: 767px)").matches;
+    setIsMobile(mobileCheck);
+
+    if (mobileCheck) return; // ❌ Do not render bubbles if on mobile
+
     const canvas = document.getElementById("stars-canvas") as HTMLCanvasElement;
     const ctx = canvas?.getContext("2d");
     let stars: { x: number; y: number; radius: number; dx: number; dy: number; alpha: number }[] = [];
@@ -49,7 +55,14 @@ const BackgroundCanvas = () => {
       };
       animate();
     }
+
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
   }, []);
+
+  // ❌ Don't render canvas at all on mobile
+  if (isMobile) return null;
 
   return (
     <canvas
