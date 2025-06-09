@@ -98,7 +98,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/1gRufud-E6JswmrBGNcA0OcqoDoNLRQ3F/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1Z-fexEFswrinassdKzpev2GKJebuGLtD/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
