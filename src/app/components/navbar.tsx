@@ -46,7 +46,7 @@ const Navbar = () => {
             className="absolute top-[10px] left-6 h-[50px] w-[50px] rounded-full border-2 border-cyan-400 shadow-md"
           />
 
-          <ul className="hidden md:flex md:items-center md:space-x-10 ml-auto">
+          <ul className="hidden md:flex md:items-center md:space-x-10 ml-[400px]">
             {navLinks.map(link => (
               <li
                 key={link.name}
