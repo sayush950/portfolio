@@ -16,54 +16,6 @@ const Hero = () => {
       loop: true,
     });
 
-    const canvas = document.getElementById("stars-canvas") as HTMLCanvasElement | null;
-    const ctx = canvas?.getContext("2d");
-    let stars: { x: number; y: number; radius: number; dx: number; dy: number; alpha: number }[] = [];
-
-    if (canvas && ctx) {
-      const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      };
-      resize();
-      window.addEventListener("resize", resize);
-
-      for (let i = 0; i < 100; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 0.5 + 1.5,
-          dx: (Math.random() - 0.5) * 0.5,
-          dy: (Math.random() - 0.5) * 0.5,
-          alpha: Math.random(),
-        });
-      }
-
-      const animate = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let star of stars) {
-          star.x += star.dx;
-          star.y += star.dy;
-
-          if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
-          if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-
-          const isDark = document.documentElement.classList.contains("dark");
-          const color = isDark
-            ? `rgba(255, 255, 255, ${star.alpha})`
-            : `rgba(0, 0, 0, ${star.alpha})`;
-
-          ctx.fillStyle = color;
-          ctx.fill();
-        }
-        requestAnimationFrame(animate);
-      };
-      animate();
-    }
-
     const handleScroll = () => {
       setShowScrollButton(window.scrollY > window.innerHeight * 0.5);
     };
@@ -72,7 +24,6 @@ const Hero = () => {
 
     return () => {
       typed.destroy();
-      window.removeEventListener("resize", () => {});
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -82,23 +33,18 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row justify-center md:justify-between items-center px-6 sm:px-10 md:px-16 bg-background text-foreground overflow-hidden">
-      {/* Star Background */}
-      <div className="absolute inset-0 z-0">
-        <canvas id="stars-canvas" className="w-full h-full"></canvas>
-      </div>
-
+    <section className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 md:px-16 bg-background text-foreground overflow-hidden">
       {/* Main hero Content */}
-      <div className="z-10 max-w-5xl lg:ml-60 text-center md:text-left mt-24 md:mt-0 px-4 sm:px-6 md:px-0">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+      <div className="z-10 w-full max-w-5xl text-center md:text-left mt-24 md:mt-10 px-4 sm:px-6 md:px-0">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
           Hi, <span id="typed-text" className="text-cyan-500"></span>
         </h1>
-        <p className="text-lg sm:text-xl max-w-2xl mb-8">
-          I build elegant, fast, and scalable web applications using modern tech.
+        <p className="text-md sm:text-lg md:text-xl max-w-2xl mb-6">
+          I build elegant, fast, and scalable web applications using modern technologies and best practices.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/1PQ61QpoD3-a4_sif8ZJPoWRVk-6XHJbk/view?usp=drive_link"
+            href="https://drive.google.com/file/d/19vdxKt-ZxDn8icU4rxgABvBKzA_DGu11/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"

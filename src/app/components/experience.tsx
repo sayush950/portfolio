@@ -1,15 +1,31 @@
 "use client";
 import { BriefcaseIcon, AcademicCapIcon } from "@heroicons/react/24/solid";
-import { motion } from "framer-motion";
 import { useState } from "react";
 import React, { ReactNode } from "react";
 
 
 const experienceData = [
   {
+    title: "Jr. Software Developer",
+    org: "Infinite Computer Solutions",
+    date: "Aug 2025 - *Present",
+    icon: "💼",
+    description: [
+      "Developing an automated migration tool to upgrade legacy projects and an AI-driven tagging platform to generate TechSpec docs, suggest code changes, and enable one-click review, approval, and GitHub integration.",
+      <>
+        Integrating Figma and acceptance criteria with AI agents to automate requirements translation and code tagging, reducing manual effort and accelerating delivery timelines.
+      </>,
+      // "Redesign scalable MySQL databases to handle complex submission workflows, including tagging metadata, approvals, and submission history.",
+      // "Modernized the supplier validation platform by developing secure, high-performance REST APIs with Express.js as part of the MERN stack, replacing legacy architecture to streamline supplier submissions."
+    ],
+    links: [
+      { label: "Infinite Computer Solutions", url: "https://www.infinite.com/" }
+    ]
+  },
+  {
     title: "Graduate Assistant (Software Developer - Data Team)",
     org: "Auburn University RFID Lab, Auburn, AL",
-    date: "Aug 2023 - *Present",
+    date: "Aug 2023 - July 2025",
     icon: "💼",
     description: [
       "Streamline data pipelines to support tracking and lifecycle visibility for thousands of supplier evaluations.",
@@ -209,13 +225,10 @@ const Experience = () => {
               const shortDesc = Array.isArray(exp.description) ? exp.description.slice(0, 2) : exp.description;
 
               return (
-                <motion.div
+                <div
                   key={idx + title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0 }}
-                  transition={{ type: "spring", stiffness: 40, damping: 18, mass: 0.6, delay: idx * 0.15 }}
-                  className="relative bg-white dark:bg-zinc-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition"
+                  className="relative bg-white dark:bg-zinc-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 hover:shadow-[0_0_15px_rgba(255,0,255,0.5)] transition transform duration-500"
+                  style={{ transitionDelay: `${idx * 75}ms` }}
                 >
                   <span className="absolute left-[-2.25rem] top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full border-4 border-fuchsia-500 bg-pink-600 shadow-[0_0_20px_rgba(255,0,255,0.6)]"></span>
 
@@ -265,7 +278,7 @@ const Experience = () => {
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
