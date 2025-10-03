@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 const Project = () => {
   return (
@@ -18,13 +17,7 @@ const Project = () => {
         {/* Project Card */}
 
 
-<motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 rounded-xl shadow-md border border-gray-300 dark:border-zinc-700"
-        >
+  <div className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 transition transform duration-500" style={{transitionDelay: '0ms'}}>
           {/* Text Content */}
           <div className="flex-1 mb-10 lg:mb-0 lg:mr-12">
             <p className="text-pink-600 font-medium mb-2">— Software Supply Chain</p>
@@ -76,16 +69,10 @@ const Project = () => {
               className="rounded-xl border-[2px] border-gray-600"
             />
           </div> */}
-        </motion.div>
+  </div>
 
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700"
-        >
+        <div className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 transition transform duration-500" style={{transitionDelay: '80ms'}}>
           {/* Text Content */}
           <div className="flex-1 mb-10 lg:mb-0 lg:mr-12">
             <p className="text-pink-600 font-medium mb-2">— DBMS Bookstore System</p>
@@ -137,16 +124,10 @@ const Project = () => {
               className="rounded-xl border-[2px] border-gray-600"
             />
           </div> */}
-        </motion.div>
+  </div>
 
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700"
-        >
+        <div className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 transition transform duration-500" style={{transitionDelay: '160ms'}}>
           {/* Text Content */}
           <div className="flex-1 mb-10 lg:mb-0 lg:mr-12">
             <p className="text-pink-600 font-medium mb-2">— Full Stack App</p>
@@ -198,15 +179,9 @@ const Project = () => {
               className="rounded-xl border-[2px] border-gray-600"
             />
           </div> */}
-        </motion.div>
+  </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700"
-        >
+        <div className="flex flex-col lg:flex-row items-center justify-between bg-white dark:bg-[#2f2f2f] text-black dark:text-white p-6 mt-[50px] rounded-xl shadow-md border border-gray-300 dark:border-zinc-700 transition transform duration-500" style={{transitionDelay: '240ms'}}>
           {/* Text Content */}
           <div className="flex-1 mb-10 lg:mb-0 lg:mr-12">
             <p className="text-pink-600 font-medium mb-2">— Full Stack App</p>
@@ -258,7 +233,7 @@ const Project = () => {
               className="rounded-xl border-[2px] border-gray-600"
             />
           </div>
-        </motion.div>
+  </div>
       </div>
     </section>
   );
