@@ -44,7 +44,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
-            href="https://drive.google.com/file/d/19vdxKt-ZxDn8icU4rxgABvBKzA_DGu11/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1ispiQbIesqMjIqMVHcNEFwntD9b2OQY4/view?usp=drive_link"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-md bg-cyan-700 text-white hover:bg-cyan-600 transition"
